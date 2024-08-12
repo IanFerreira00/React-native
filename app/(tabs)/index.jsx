@@ -1,119 +1,139 @@
-import React from "react";
-import { Text, View, Button } from 'react-native';
-import { TextInput } from "react-native";
-import {useState} from "react"
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import {useState} from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { Entypo } from '@expo/vector-icons'; 
 
-const style = function (){
-    return({
-        container: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 50,
-            
+
+
+export default function App() {
+  const [darkMode, setDarkMode] = useState(false)
+  const buttons = ['AC', 'DEL', '%', '/', 7, 8, 9, '*', 4, 5, 6, '-', 3, 2, 1, '+', 0, '.', '+/-', '=']  
+
+  const [currentNumber, setCurrentNumber] = useState("")
+  const [lastNumber, setLastNumber] = useState("")
+
+
+  function calculator(){
+    const splitNumbers = currentNumber.split(' ')
+    const fistNumber = parseFloat(splitNumbers[0])
+    const lastNumber = parseFloat(splitNumbers[2])
+    const operator = splitNumbers[1]
+
+    switch(operator){
+      case '+':
+        setCurrentNumber((fistNumber + lastNumber).toString())
+        return
+      case '-': 
+        setCurrentNumber((fistNumber - lastNumber).toString())
+        return
+      case '*':
+        setCurrentNumber((fistNumber * lastNumber).toString())
+        return
+      case '/': 
+        setCurrentNumber((fistNumber / lastNumber).toString())
+        return
+    }
+  }
+
+  function handleInput(buttonPressed){
+    console.log(buttonPressed)
+    if(buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "*" | buttonPressed === "/" ){
+      setCurrentNumber(currentNumber + " " + buttonPressed + " ")
+      return
+    }
+    switch(buttonPressed){
+      case 'DEL':
+        setCurrentNumber(currentNumber.substring(0, (currentNumber.length -1)))
+        return
+      case 'AC':
+        setLastNumber("")
+        setCurrentNumber("")
+        return
+      case '=':
+        setLastNumber(currentNumber + " = ")
+        calculator()
+        return
+      case '+/-':
+        return
+    }
+
+    setCurrentNumber(currentNumber + buttonPressed)
+  }
+
+  const styles = StyleSheet.create({
+    results: {
+      backgroundColor: darkMode ? "#282f3b" : "#f5f5f5",
+      width: '100%',
+      minHeight: 280,
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end'
     },
-        row:{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 10,
+    resultText: {
+      color: darkMode ? "#f5f5f5" : "#282F38",
+      margin: 10,
+      fontSize: 40
     },
-        button:{
 
-        },
-        input: {
-            height: 40,
-            margin: 12,
-            borderWidth: 1,
-            padding: 10,
-            backgroundColor: '#a4adb5',
-            borderRadius: 20,
-          },
-          resultado:{
-            height: 40,
-            margin: 12,
-            borderWidth: 1,
-            padding: 10,
-            width: 200.,
-            borderRadius: 20,
-            backgroundColor: '#a4adb5',
-          }
-})
-}
+    historyText:{
+      color: darkMode ? "#B5B7BB" : "#7c7c7c",
+      fontSize: 20,
+      marginRight: 10,
+      alignSelf: 'flex-end',
+    },
+    themeButton: {
+      alignSelf: 'flex-start',
+      bottom: 120,
+      margin: 10,
+      backgroundColor: darkMode ? "#7b8084" :"#e5e5e5",
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      
+    },
+    buttons: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    button: {
+      borderColor: darkMode ? '#3f4d5b' : "#e5e5e5",
+      borderWidth: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      minWidth: 90, 
+      minHeight: 90,
+      flex: 2,
+    },
+    textButton: {
+      color: darkMode ? "#b5b7bb" : "#7c7c7c",
+      fontSize: 20,
+    }, 
+  });
 
-export default helloWorld = function(){
-        const [number1, onChangeNumber1] = useState('');
-        const [number2, onChangeNumber2] = useState('');
-        const [resultado, setResultado] = useState('');
-    
-        const soma = function(){
-             setResultado (Number(number1) + Number(number2))
-             onChangeNumber1 ('')
-             onChangeNumber2('')
-             return true
-        }
-        const subtracao = function(){
-             setResultado (Number(number1) - Number(number2))
-             onChangeNumber1 ('')
-             onChangeNumber2('')
-             return true
-        }
-        const multiplicacao = function(){
-             setResultado (Number(number1) * Number(number2))
-             onChangeNumber1 ('')
-             onChangeNumber2('')
-             return true
-        }
-        const divisao = function(){
-             setResultado (Number(number1) / Number(number2))
-             onChangeNumber1 ('')
-             onChangeNumber2('')
-             return true
-        }
-        console.log(resultado)
-
-    return(
-        <View style={style().container}>
-            <Text>CALCULADORA</Text>
-            <Text>Digite 2 numeros</Text>
-                <View style={style().row}>
-                <TextInput style={style().input}
-                onChangeText={onChangeNumber1}
-                value={number1}
-        placeholder="Primeiro numero"
-        keyboardType="numeric"
-      />
-                <TextInput style={style().input}
-                onChangeText={onChangeNumber2}
-                value={number2}
-        placeholder="Segundo numero"
-        keyboardType="numeric"
-      />
-                    
-            </View>
-            <View style={style().row}>
-                <Button style={style().button}
-                onPress={() => soma()}
-                title="+"
-                color="#a4adb5"/>
-                
-                <Button style={style().button}
-                onPress={() => subtracao()}
-                title="-"
-                color="#a4adb5"/>
-
-                <Button style={style().button}
-                onPress={() => multiplicacao()}
-                title="*"
-                color="#a4adb5"/>
-
-                <Button style={style().button}
-                onPress={() => divisao()}
-                title="/"
-                color="#a4adb5"/>
-            </View>
-            <Text style={style().resultado}>Seu resultado é:{resultado}</Text>
-        </View>
-        
-    )
-    
+  return (
+    <View>
+      <View style={styles.results}>
+        <TouchableOpacity style={styles.themeButton}>
+          <Entypo name={darkMode ? "light-up" : 'moon'} size={24} color={darkMode ? "white" : 'black'} onPress={() => darkMode ? setDarkMode(false) : setDarkMode(true)} />
+        </TouchableOpacity>
+        <Text style={styles.historyText}>{lastNumber}</Text>
+        <Text style={styles.resultText}>{currentNumber}</Text>
+      </View>
+      <View style={styles.buttons}>
+        {buttons.map((button) => 
+          button === '=' ?
+        <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, {backgroundColor: '#EDEDED'}]}>
+          <Text style={[styles.textButton, {color: "grey", fontSize: 30}]}>{button}</Text>
+        </TouchableOpacity>
+          :
+          <TouchableOpacity onPress={() => handleInput(button)} key={button} style={[styles.button, 
+          {backgroundColor: typeof(button) === 'number' ? darkMode === true ? '#303946' : '#fff': darkMode === true ? '#414853' : '#ededed'}]}>
+            <Text style={styles.textButton}>{button}</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
+  );
 }
