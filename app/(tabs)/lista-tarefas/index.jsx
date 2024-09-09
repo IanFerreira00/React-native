@@ -26,38 +26,38 @@ const Data = [
 
 const Item = ({ item, onPress, onPressIn, onPressOut, onDelete }) => (
   <View style={styles.line}>
-  <Pressable
-    onPress={onPress}
-    onPressIn={onPressIn}
-    onPressOut={onPressOut}
-    style={({ pressed }) => [
-      styles.btn,
-      {
-        backgroundColor: pressed ? '#e0e0e0' : '#fff',
-        elevation: pressed ? 5 : 0, 
-      }
-    ]}
-  >
-    <Text style={{ textDecorationLine: item.feito ? 'line-through' : 'none' }}>
-      {item.nome}
-    </Text>
-  </Pressable>
-  <Pressable onPress={onDelete} style={styles.deleteButton}>
-  <Text style={styles.deleteText}>X</Text>
-</Pressable>
-</View>
+    <Pressable
+      onPress={onPress}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      style={({ pressed }) => [
+        styles.btn,
+        {
+          backgroundColor: pressed ? '#e0e0e0' : '#fff',
+          elevation: pressed ? 5 : 0,
+        }
+      ]}
+    >
+      <Text style={{ textDecorationLine: item.feito ? 'line-through' : 'none' }}>
+        {item.nome}
+      </Text>
+    </Pressable>
+    <Pressable onPress={onDelete} style={styles.deleteButton}>
+      <Text style={styles.deleteText}>X</Text>
+    </Pressable>
+  </View>
 );
 
 const ListaTarefa = () => {
   const [data, setData] = useState(Data);
-  const [novoItem, setNovoItem] = useState(''); 
+  const [novoItem, setNovoItem] = useState('');
 
   const adicionarTarefa = () => {
     if (novoItem.trim() !== '') {
-      const novoId = (data.length + 1).toString(); 
+      const novoId = (data.length + 1).toString();
       const novaTarefa = { id: novoId, nome: novoItem, feito: false };
       setData([...data, novaTarefa]);
-      setNovoItem(''); 
+      setNovoItem('');
     }
   }
 
@@ -78,8 +78,8 @@ const ListaTarefa = () => {
       item={item}
       onPress={() => concluirTarefa(item.id)}
       onDelete={() => excluirTarefa(item.id)}
-      onPressIn={() => {}}
-      onPressOut={() => {}}
+      onPressIn={() => { }}
+      onPressOut={() => { }}
     />
   );
 
@@ -93,17 +93,17 @@ const ListaTarefa = () => {
           value={novoItem}
           onChangeText={setNovoItem}
         />
-        <Pressable 
-        style={styles.inputbnt}
-        onPress={adicionarTarefa} 
+        <Pressable
+          style={styles.inputbnt}
+          onPress={adicionarTarefa}
         ><Text>Adicionar</Text></Pressable>
       </View>
       <SafeAreaView>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
       </SafeAreaView>
     </View>
   );
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding:12,
+    padding: 12,
     marginTop: 50
   },
   titulo: {
@@ -123,25 +123,25 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   line: {
-    flexDirection:'row',
+    flexDirection: 'row',
     marginBottom: 2.5,
     minWidth: 330,
     maxWidth: 330,
   },
   btn: {
     paddingHorizontal: 10,
-    paddingVertical: 8, 
+    paddingVertical: 8,
     borderWidth: 1,
-    borderColor: 'black', 
-    marginRight: 8, 
+    borderColor: 'black',
+    marginRight: 8,
     flex: 1,
-    minWidth:50,  
+    minWidth: 50,
   },
   deleteButton: {
-    backgroundColor: 'black', 
+    backgroundColor: 'black',
     paddingHorizontal: 14,
     paddingVertical: 8,
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   deleteText: {
     color: '#fff',
@@ -156,14 +156,14 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 0 ,
+    borderRadius: 0,
     paddingHorizontal: 8,
     paddingVertical: 4,
     marginRight: 8,
   },
   inputbnt: {
     backgroundColor: 'green',
-    justifyContent:'center',
+    justifyContent: 'center',
     borderRadius: 6,
     paddingHorizontal: 6,
   }

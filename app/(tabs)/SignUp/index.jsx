@@ -4,13 +4,13 @@ import Input from "./Input";
 
 const App = () => {
     const [formData, setFormData] = useState({
-        usuario:'',
-        email:'',
-        senha:'',
+        usuario: '',
+        email: '',
+        senha: '',
     })
 
-    const handleInputChange = (name,value) => {
-        setFormData ({
+    const handleInputChange = (name, value) => {
+        setFormData({
             ...formData,
             [name]: value
         })
@@ -57,9 +57,9 @@ const App = () => {
                 />
             </View>
             <Pressable style={styles.button}
-            onPress={handleButton}
+                onPress={handleButton}
             >
-                <Text style={{color: "white", fontWeight: 'medium'}}> Sign Up</Text>
+                <Text style={{ color: "white", fontWeight: 'medium' }}> Sign Up</Text>
             </Pressable>
         </View>
     )

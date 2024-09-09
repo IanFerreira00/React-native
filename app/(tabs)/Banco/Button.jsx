@@ -2,21 +2,21 @@ import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 
-function Button({onPress, title}) {
+function Button({ onPress, title }) {
     return (
-       <Pressable 
-       style={styles.button}
-       onPress={onPress}
-       ><Text style={styles.text}>{title}</Text></Pressable>
+        <Pressable
+            style={styles.button}
+            onPress={onPress}
+        ><Text style={styles.text}>{title}</Text></Pressable>
     );
 }
 
 const styles = StyleSheet.create({
-    button : {
+    button: {
         justifyContent: 'center',
-        alignItems: 'center', 
+        alignItems: 'center',
         backgroundColor: 'red',
-        width:'100%',
+        width: '100%',
         paddingVertical: 10,
         borderRadius: 3,
     },

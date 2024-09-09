@@ -1,24 +1,24 @@
 import { TextInput, View, Text, StyleSheet } from "react-native"
 
 
-const Input = ({nome, value, onChangeText, placeholder, secureTextEntry}) => {
+const Input = ({ nome, value, onChangeText, placeholder, secureTextEntry }) => {
     return (
         <View>
             <Text style={styles.label}>{nome}</Text>
-        <TextInput
-            style={styles.input}
-            value={value}
-            onChangeText={onChangeText}
-            placeholder={placeholder}
-            secureTextEntry={secureTextEntry}
-            required
-        />
+            <TextInput
+                style={styles.input}
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={placeholder}
+                secureTextEntry={secureTextEntry}
+                required
+            />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    input:{
+    input: {
         backgroundColor: '#f5f5f5',
         width: 240,
         padding: 6,
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     label: {
-        fontSize:14,
-        fontWeight:500
-        }
+        fontSize: 14,
+        fontWeight: 500
+    }
 })
 
 export default Input;
