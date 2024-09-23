@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, Button, StyleSheet, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from 'expo-router';
 
 
 const style = StyleSheet.create({
@@ -29,10 +30,11 @@ const splashScreen = function () {
             colors={['black', 'red']}
             style={style.background}
         />
+        <Link href="/Pokemon">
         <Image
             style={style.tinyLogo}
             source={require('../../../assets/images/fla.png')}
-        />
+        /></Link>
     </View>
 }
 
