@@ -6,13 +6,13 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1E1E1E', // Fundo escuro para contraste moderno
+    backgroundColor: '#1E1E1E',
     padding: 20,
   },
   botao: {
-    backgroundColor: '#FF6F61', // Cor vibrante para o botão
+    backgroundColor: '#FF6F61', 
     paddingVertical: 15,
-    borderRadius: 25, // Cantos arredondados mais suaves
+    borderRadius: 25, 
     marginVertical: 10  , 
     alignItems: 'center',
     justifyContent: 'center',
@@ -84,6 +84,11 @@ const Inicio = function () {
       <Link href="/Perfil">
         <Pressable style={style.botao}>
           <Text style={style.botaoTexto}>Perfil</Text>
+        </Pressable>
+      </Link>
+      <Link href="/iFome">
+        <Pressable style={style.botao}>
+          <Text style={style.botaoTexto}>Ifome</Text>
         </Pressable>
       </Link>
     </View>
