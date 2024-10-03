@@ -1,5 +1,6 @@
 import { Link } from 'expo-router';
-import { View, Pressable, StyleSheet, Text } from "react-native";
+import { View, Pressable, StyleSheet, Text, FlatList, ScrollView } from "react-native";
+
 
 const style = StyleSheet.create({
   container: {
@@ -21,7 +22,7 @@ const style = StyleSheet.create({
     shadowOffset: {
     width: 0,
     },
-    shadowOpacity: 0.3,
+    sha0dowOpacity: 0.3,
     shadowRadius: 4.65,
     elevation: 8, 
   },
@@ -43,6 +44,7 @@ const style = StyleSheet.create({
 
 const Inicio = function () {
   return (
+    <ScrollView>
     <View style={style.container}>
       <Text style={style.title}>Selecione uma Opção</Text>
 
@@ -81,7 +83,7 @@ const Inicio = function () {
           <Text style={style.botaoTexto}>Splash Screen</Text>
         </Pressable>
       </Link>
-      <Link href="/Perfil">
+      <Link href="/">
         <Pressable style={style.botao}>
           <Text style={style.botaoTexto}>Perfil</Text>
         </Pressable>
@@ -91,7 +93,18 @@ const Inicio = function () {
           <Text style={style.botaoTexto}>Ifome</Text>
         </Pressable>
       </Link>
+      <Link href="/Galeria">
+        <Pressable style={style.botao}>
+          <Text style={style.botaoTexto}>Galeria</Text>
+        </Pressable>
+      </Link>
+      <Link href="/Camera">
+        <Pressable style={style.botao}>
+          <Text style={style.botaoTexto}>Camera</Text>
+        </Pressable>
+      </Link>
     </View>
+</ScrollView>
   );
 }
 

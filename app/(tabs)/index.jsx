@@ -20,7 +20,7 @@ export default function SobreHome() {
         />
         <Text style={styles.welcome}>Bem-vindo</Text>
         <Text style={styles.description}>
-          Meu nome é Ian, curso desenvolvimento de sistemas no sesi senai de São José. <br /> Tenho 17 anos e moro em florianópolis.
+          Meu nome é Ian, curso desenvolvimento de sistemas no sesi senai de São José.  Tenho 17 anos e moro em florianópolis.
         </Text>
         <FlatList
           data={data}
