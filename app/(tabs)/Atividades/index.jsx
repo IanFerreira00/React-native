@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { View, Pressable, StyleSheet, Text, FlatList, ScrollView } from "react-native";
+import { View, Pressable, StyleSheet, Text, ScrollView } from "react-native";
 
 
 const style = StyleSheet.create({

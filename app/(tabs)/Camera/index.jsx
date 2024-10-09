@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react';
 import {View, Button, StyleSheet, Text, Image} from 'react-native';
 import {CameraView, useCameraPermissions } from 'expo-camera'
+import * as MediaLibrary from 'expo-media-library'
 
 export default function Camera(){
     const [permissao, pedirPermissao] = useCameraPermissions()
@@ -22,7 +23,6 @@ export default function Camera(){
             </View>
         )
     }
-
     const tirarFoto = async () => {
 
     const foto_base64 = await cameraRef.current?.takePictureAsync({
@@ -31,32 +31,38 @@ export default function Camera(){
     }) 
     setFoto(foto_base64)
  
-}
+    }
 
     const trocaCamera = () => {
         setLado(lado == 'back' ? 'front' : 'back')
+    }
+    const salvarFoto = () => {
+        MediaLibrary.saveToLibraryAsync(foto.uri)
+        setFoto(null)
     }
 
     return(
         <View style={style.container}>
         {foto ? 
-            <View>
+            <View style={style.camera}>
+                <Button title='Excluir foto' onPress={() => setFoto(null)}/>
+                <Button title='Salvar foto' onPress={salvarFoto}/>
                 <Image source={{ uri: foto.uri}} style={style.foto}/>
-                <Button title='Limpar foto' onPress={setFoto(null)}/>
             </View> :
         <CameraView facing={lado} style={style.camera} ref={cameraRef}>
             <Button style={style.botao} title='Tirar foto' onPress={tirarFoto}/>
-            <Button title='Trocar camera' onpress={trocaCamera}/>
+            <Button title='Trocar camera' onPress={trocaCamera}/>
         </CameraView>
     }  
     </View>
 )}
 
-const style = StyleSheet.create({
+const style = StyleSheet.create({ 
     container:{
         flex: 1,
         alignContent: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+
 
     },
     textPermissao:{
@@ -72,7 +78,7 @@ const style = StyleSheet.create({
     botao:{
         flex: 1,
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
     }
 
 })
