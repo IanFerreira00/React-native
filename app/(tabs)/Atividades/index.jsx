@@ -9,6 +9,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#1E1E1E',
     padding: 20,
+
   },
   botao: {
     backgroundColor: '#FF6F61', 
@@ -101,6 +102,11 @@ const Inicio = function () {
       <Link href="/Camera">
         <Pressable style={style.botao}>
           <Text style={style.botaoTexto}>Camera</Text>
+        </Pressable>
+      </Link>
+      <Link href="/memorias">
+        <Pressable style={style.botao}>
+          <Text style={style.botaoTexto}>Memórias</Text>
         </Pressable>
       </Link>
     </View>
